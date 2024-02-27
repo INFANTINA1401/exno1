@@ -20,8 +20,8 @@ STEP 5: Remove outliers using IQR
 
 STEP 6: Use zscore of to remove outliers
 
-# Coding and Output           ## Developed By: JAYAVARTHAN P
-           ## Reg No: 212222100015
+# Coding and Output           ## Developed By: YUVARAJ B
+           ## Reg No: 212222230182
 # 1) Read and display DataFrame
 ```
 import pandas as pd
