@@ -79,7 +79,7 @@ Running The Emulator (emu8086) Intro 8086 Microprocessor Emulator, also known as
 ## Programs for arithmetic  operations
 
 ## Addition  
-```python
+```c
 org 100h
 MOV al,11h;
 MOV bl,20h;
@@ -130,9 +130,9 @@ ret
 ## AND
 ```python
 org 100h
-mov bx,1000h;
-and bx,1111h;
-mov [0040h+02],bx;
+MOV bx,1000h;
+AND bx,1111h;
+MOV [0040h+02],bx;
 ret
 ```
 ## Output 
@@ -141,10 +141,10 @@ ret
 ## OR
 ```python
 org 100h
-mov ax,[0070h];
-mov bx,1000h;
-or ax,bx;
-mov [0060h],ax;
+MOV ax,[0070h];
+MOV bx,1000h;
+OR ax,bx;
+MOV [0060h],ax;
 ret
 ```
 ## Output
@@ -152,10 +152,10 @@ ret
 ## NOT
 ```python
 org 100h
-mov bx,0060h;
-mov ax,[bx]; 
-not al;
-mov [0060h+04],ax;
+MOV bx,0060h;
+MOV ax,[bx]; 
+NOT al;
+MOV [0060h+04],ax;
 ret
 ```
 ## Output
@@ -164,10 +164,10 @@ ret
 ## XOR
 ```python
 org 100h
-mov bx,0050h;
-mov ax,[bx]; 
-xor ax,bx;
-mov [0050h+03],ax;
+MOV bx,0050h;
+MOV ax,[bx]; 
+XOR ax,bx;
+MOV [0050h+03],ax;
 ret
 ```
 ## Output
