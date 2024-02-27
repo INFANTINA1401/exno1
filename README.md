@@ -1,177 +1,120 @@
-# EXPERIMENT--01-ALP-FOR-8086
+# Exno:1
+Data Cleaning Process
 
-Name : Aravindhnath TR
-Roll no : 212222100005
-Date of experiment : 20/02/2024
+# AIM
+To read the given data and perform data cleaning and save the cleaned data to a file.
 
+# Explanation
+Data cleaning is the process of preparing data for analysis by removing or modifying data that is incorrect ,incompleted , irrelevant , duplicated or improperly formatted. Data cleaning is not simply about erasing data ,but rather finding a way to maximize datasets accuracy without necessarily deleting the information.
 
+# Algorithm
+STEP 1: Read the given Data
 
+STEP 2: Get the information about the data
 
+STEP 3: Remove the null values from the data
 
-## Aim: To Write and execute ALP on fundamental arithmetic and logical operations
-## Components required: 8086  emulator 
-## Theory 
-Running The Emulator (emu8086) Intro 8086 Microprocessor Emulator, also known as EMU8086, is an emulator of the program 8086 microprocessor. It is developed with a built-in 8086 assembler. This application is able to run programs on both PC desktops and laptops. This tool is primarily designed to copy or emulate hardware. These include the memory of a program, CPU, RAM, input and output devices, and even the display screen. There are instructions to follow when using this emulator. It can be executed into one of the two ways: backward or forward. There are also examples of assembly source code included. With this, it allows the programming of assembly language, reverse engineering, hardware architecture, and creating miniature operating system (OS). The user interface of 8086 Microprocessor Emulator is simple and easy to manage. There are five major buttons with icons and titles included. These are “Load”, “Reload”, “Step Back”, “Single Step”, and “Run”. Above those buttons is the menu that includes “File”, “View”, “Virtual Devices”, “Virtual Drive”, and “Help”. Below the buttons is a series of choices that are usually in numbers and codes. At the leftmost part is an area called “Registers” with an indication of either “H” or “L”. The other side is divided into two, which enables users to manually reset, debug, flag, etc. What is 8086 emulator emu8086 is an emulator of Intel 8086 (AMD compatible) microprocessor with integrated 8086 assembler and tutorials for beginners. Emulator runs programs like the real microprocessor in step-by-step mode. it shows registers, memory, stack, variables and flags.
+STEP 4: Save the Clean data to the file
 
+STEP 5: Remove outliers using IQR
 
- ## Running the Emulator :
-1.	Download and install emu8086 (www.emu8086.com) It is usually installed in C:\EMU8086 subfolder in the “Windows” directory
-2.	  Run  emu8086 icon (on the desktop or in the c:\EMU8086 folder of window) It has green color 
- 
- 
-3.		write the code for the appropriate program for ADDITION,SUBTRACTION, MULTIPLICATION,  DIVISION operations 
+STEP 6: Use zscore of to remove outliers
 
-4.	 Compile the program and check for the errors 
-5.	Run (once there is no syntax error) 
-
-6.	Click OK to see/view the output of your program on the Emulator screen. 
-
-
-7.	After running the program, another menu screen will be displayed, where you have the option to “View” symbol table,
-8.	 
-
-
-![image](https://user-images.githubusercontent.com/36288975/189273263-d65baae9-4b8f-4723-afb3-c0ffa4052b04.png)
-
-
-
-
-
-
-
-
-
-
-
-9.	Click on emulate to start emulation 
-
-
-
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/36288975/189273273-9bb36ec1-e2e8-4892-8d35-37707332bfdc.png)
-
-
-
-
-
-
-
-
-10.	If no errors are found click on run the program and check the status of various flags in the flags tab as shown below 
-
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/36288975/189273277-113a2a33-4a40-4ff8-95a5-ecd3a1f504fe.png)
-
-
-
-
-
-
-
-## Programs for arithmetic  operations
-
-## Addition  
-```c
-org 100h
-MOV al,11h;
-MOV bl,20h;
-ADD al,bl;
-MOV [6379h],al;
-ret
+# Coding and Output           ## Developed By: JAYAVARTHAN P
+           ## Reg No: 212222100015
+# 1) Read and display DataFrame
 ```
-## Output  
- ![OUTPUT](Output1-pmc1.png)
- 
-## Subtraction 
-```python
-org 100h
-MOV al,20h;
-MOV bl,[8778h];
-SUB bl,al;
-MOV [8798h],bl;
-ret
+import pandas as pd
+df=pd.read_csv('/content/SAMPLEDS.csv')
+df
 ```
-## Output
-![OUTPUT](Output2-pmc1.png)
+## OUTPUT:
+![Output](Op1-ds1.png)
 
-## Multiplication
-```python
-org 100h
-MOV al,13h;
-MOV bl,2h;
-MUL bl;
-MOV [6063h],bl;
-ret
+## 2) Display head
 ```
- ## Output  
-![OUTPUT](Output3-pmc1.png)
+df.head()
+```
+## OUTPUT:
+![Output](Op2-ds1.png)
 
-## Division
-```python
-org 100h
-MOV al,26h;
-MOV bl,[2369h];
-DIV bl;
-MOV [2399h],al;
-ret
+## 3) Display tail
 ```
-## Output  
-![OUTPUT](Output4-pmc1.png)
-## Programs for logical  operations
+df.tail()
+```
+## OUTPUT:
+![Output](Op3-ds1.png)
 
-## AND
-```python
-org 100h
-MOV bx,1000h;
-AND bx,1111h;
-MOV [0040h+02],bx;
-ret
+## 4) Info of dataframe
 ```
-## Output 
-![OUTPUT](Output5-pmc1.png)
+df.info()
+```
+## OUTPUT:
+![Output](Op4-ds1.png)
 
-## OR
-```python
-org 100h
-MOV ax,[0070h];
-MOV bx,1000h;
-OR ax,bx;
-MOV [0060h],ax;
-ret
+## 5) Describe about the dataframe
 ```
-## Output
-![OUTPUT](Output6-pmc1.png)
-## NOT
-```python
-org 100h
-MOV bx,0060h;
-MOV ax,[bx]; 
-NOT al;
-MOV [0060h+04],ax;
-ret
+df.describe()
 ```
-## Output
-![OUTPUT](Output7-pmc1.png)
+## OUTPUT:
+![Output](Op5-ds1.png)
 
-## XOR
-```python
-org 100h
-MOV bx,0050h;
-MOV ax,[bx]; 
-XOR ax,bx;
-MOV [0050h+03],ax;
-ret
+## 6) Shape of the dataframe
 ```
-## Output
-![OUTPUT](Output8-pmc1.png)
+df.shape
+```
+## OUTPUT:
+![Output](Op6-ds1.png)
 
-## Result :
-Thus, ALP for fundamental arithmetic and logical operations are executed successfully.
+## 7) Checking tha NUll values
+```
+df.isnull().sum()
+```
+## OUTPUT:
+![Output](Op7-ds1.png)
+
+## 8) Drop the Null values
+```
+x=df.dropna(how='any')
+x
+```
+## OUTPUT:
+![Output](Op8-ds1.png)
+
+## 9) Drop the Null values in Total
+```
+tot=df.dropna(subset=['TOTAL'],how='any')
+tot
+```
+## OUTPUT:
+![Output](Op9-ds1.png)
+
+## 10) FIll the Null values
+```
+df.fillna(0)
+```
+## OUTPUT:
+![Output](Op10-ds1.png)
+
+## 11) Finding the mean value
+```
+mn=df.TOTAL.mean()
+mn
+```
+## OUTPUT:
+![Output](Op11-ds1.png)
+
+## 12) Final output
+```
+for x in df.index:
+  if df.loc[x,"AVG"]>100:
+    df.drop(x,inplace=True)
+df
+```
+## OUTPUT:
+![Output](Op12-ds1.png)
+
+## Result
+Hence the data was cleaned , outliers were detected and removed.
+
+
