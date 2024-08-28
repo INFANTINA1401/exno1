@@ -1,224 +1,301 @@
-# Ex. 1   Data Cleaning and Outlier Detection & Removal</h1>
+# Exno:1
+Data Cleaning Process
 
+# AIM
+To read the given data and perform data cleaning and save the cleaned data to a file.
 
-## AIM
-### To read the given data and perform data cleaning and save the cleaned data to a file.
+# Explanation
+Data cleaning is the process of preparing data for analysis by removing or modifying data that is incorrect ,incompleted , irrelevant , duplicated or improperly formatted. Data cleaning is not simply about erasing data ,but rather finding a way to maximize datasets accuracy without necessarily deleting the information.
 
-## Explanation
-### Data cleaning is the process of preparing data for analysis by removing or modifying data that is incorrect ,incompleted , irrelevant , duplicated or improperly formatted. Data cleaning is not simply about erasing data ,but rather finding a way to maximize datasets accuracy without necessarily deleting the information.
+# Algorithm
+STEP 1: Read the given Data
 
-## Algorithm
-### STEP 1
-#### Read the given Data
+STEP 2: Get the information about the data
 
-### STEP 2
-#### Get the information about the data
+STEP 3: Remove the null values from the data
 
-### STEP 3 
-#### Remove the null values from the data
+STEP 4: Save the Clean data to the file
 
-### STEP 4
-#### Save the Clean data to the file
+STEP 5: Remove outliers using IQR
 
-### STEP 5
-#### Remove outliers using IQR
+STEP 6: Use zscore of to remove outliers
 
-### STEP 6
-#### Use zscore of to remove outliers
-
-## Coding and Outputs
-
-### Name : YUVARAJ B
-### Reg No: 212222230182
-
-```py
+# CODE:
+## data cleaning
+```
 import pandas as pd
-import numpy as np
-import seaborn as sns
-import os 
 df=pd.read_csv("SAMPLEIDS.csv")
 df
+df.info()
 ```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/ed03bbd1-7c97-4cd8-8cf0-3f5f9e14dcc8)
-
-```py
-df.isnull().sum()
+![image](https://github.com/user-attachments/assets/5ac7146b-9622-4f81-b8fc-fd7693961732)
 
 ```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/57d42b69-bd5e-4c22-b8e8-6f2ae3f0404a)
-
-
-
-```py
-df.isnull().any()
-```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/918f392c-8185-4d11-94f3-63785887574c)
-
-```py
-df.dropna()
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/38354c0d-60a4-4c93-a25d-4302bad7ac62)
-
-```py
-df.fillna(0)
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/2b8ac0df-d0c1-46e1-87a4-ff8f930ff3d7)
-
-```py
-df.fillna(method = 'ffill')
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/87b27264-923b-4b0d-904f-106894f0fbcd)
-
-```py
-
-df.fillna(method = 'bfill')
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/9a0df734-21b5-4b1e-baf0-2c87c82fafd7)
-
-```py
-df_dropped = df.dropna()
-df_dropped
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/e7881fae-d374-4f76-bac8-481821e6461e)
-
-```py
-df.fillna({'GENDER':'FEMALE','NAME':'PRIYU','ADDRESS':'POONAMALEE','M1':98,'M2':87,'M3':76,'M4':92,'TOTAL':305,'AVG':89.999999})
-```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/71c04f95-74c9-4971-aff9-f21a3accb70a)
-
-
-<hr><hr>
-
-
-```py
 import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+print(df)
+df.describe()
+```
+![Screenshot 2024-08-28 084855](https://github.com/user-attachments/assets/1dc978c2-444f-4c61-a4f9-dc5040d13c34)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.head(5)
+```
+![Screenshot 2024-08-28 085024](https://github.com/user-attachments/assets/fa5dbd7d-c33f-45d4-9c27-b57d8430e4f9)
+
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.tail(5)
+```
+![image](https://github.com/user-attachments/assets/5e035fc6-2362-45fd-8658-83cd117ef11d)
+
+```
+df.isnull().sum()#displays how many missing value
+```
+![image](https://github.com/user-attachments/assets/1c633f03-f506-4959-a227-d7da60f04023)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.nunique#displays unique value counts
+```
+![image](https://github.com/user-attachments/assets/ed95da65-8985-489a-b4b6-7ac3bb7916fa)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df['GENDER'].value_counts()#counts the no.of male and female in particular column
+```
+![image](https://github.com/user-attachments/assets/3f55e163-2f67-4e9f-a260-b77106ce9909)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.dropna(how='any').shape#rows and columns with missing value are deleted and then counted 
+```
+![image](https://github.com/user-attachments/assets/976d3543-586a-4ef5-a639-9207fe3f529c)
+
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.shape#all rows and columns are counted
+```
+![image](https://github.com/user-attachments/assets/f9742571-7a19-4188-8529-2a2bbc6c136b)
 ```
 
-```py
-ir=pd.read_csv('iris.csv')
-ir
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+x=df.dropna(how='any')#missing values are deleted and rows with all value are printed
+print(x)
 ```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/32840cf3-736d-4c4b-bc8e-2d55ee7e1417)
-
-```py
-ir.describe()
+![image](https://github.com/user-attachments/assets/66fa4ff7-04c0-470f-8bbf-06f2bb9239d8)
 ```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/e0ce99a8-f7b9-4ccd-9ac8-df82b53f4bc6)
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+x1=df.dropna(how='all')#if elements of rows is completely NULL then it is deleted
+print(x1)
+```
+![image](https://github.com/user-attachments/assets/f6de1296-e511-4063-a68a-2226e44ee40b)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+tot=df.dropna(subset=['TOTAL'],how='any')#missing values are deleted from total then it is printed 
+print(tot)
+df.shape
+```
+![image](https://github.com/user-attachments/assets/7dea361e-c349-459d-86a1-a3c21bd4c03b)
 
-```py
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+tot=df.dropna(subset=['M1','M2','M3','M4'],how='any')#missing values are deleted from total then it is printed 
+print(tot)
+df.shape
+```
+![image](https://github.com/user-attachments/assets/79cbe6bd-1a8f-4ff9-a689-0d9fa2c9a683)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+s=df.fillna(0)#filling the missing value with 0
+print(s)
+```
+![image](https://github.com/user-attachments/assets/4604a866-be04-4eb4-aa93-ac0e6d80e69f)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.isna().sum()
+```
+![image](https://github.com/user-attachments/assets/1ad153fb-0f7c-41d2-a5a1-4fc92fb77691)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df['M1']
+```
+![image](https://github.com/user-attachments/assets/a20ea9cc-8641-4a64-a6bb-851f440ff6c2)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.isnull()#missing value -t,not missing value-f
+```
+![image](https://github.com/user-attachments/assets/0a9dd7f5-ae8b-43ba-a626-2cf6990e6e72)
+
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+~df.isnull()
+```
+![image](https://github.com/user-attachments/assets/ce43f6be-cf47-49f3-9059-53969751fe53)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.notnull()#(~ and not null are same)
+```
+![image](https://github.com/user-attachments/assets/4c1f02c0-a6cd-41cb-b90d-29d6b26f3653)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+x1=df.dropna(axis=0,inplace=True)
+print(x1)
+```
+![image](https://github.com/user-attachments/assets/f3d199ee-dd36-4775-b4ad-235c06dc021e)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+x1=df.dropna(axis=0,inplace=False)
+print(x1)
+```
+![Screenshot 2024-08-28 090839](https://github.com/user-attachments/assets/46e336c8-0117-4175-8d15-e57c748d60eb)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+x1=df.dropna(axis=0)
+print(x1)
+```
+![image](https://github.com/user-attachments/assets/1f2378db-4370-4414-94bf-c3e4c1c91ac5)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+df.duplicated()
+```
+![image](https://github.com/user-attachments/assets/22735363-c31b-4899-a6bf-14757f0de9a0)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+#x1=df.drop_duplicates(inplace=True) #output-none
+x1=df.drop_duplicates(inplace= False)
+print(x1)
+```
+![image](https://github.com/user-attachments/assets/f463efa2-af50-4cbe-8046-e75b8f864792)
+
+```
 import seaborn as sns
+sns.heatmap(df.isnull(),yticklabels=False,annot=True)
 ```
+![image](https://github.com/user-attachments/assets/71c279a9-d413-4e25-9b6c-8c6edaffd3d0)
 
-```py
-
-sns.boxplot(x='sepal_width',data=ir)
 ```
-
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/1c9bfcae-a2b3-4573-b204-c2590c8bc9a6)
-
-
-```py
-c1=ir.sepal_width.quantile(0.25)
-c3=ir.sepal_width.quantile(0.75)
-iq=c3-c1
-print(c3)
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/05ef4457-91f5-4a19-b413-1d4eea93b0a7)
-
-```py
-
-rid=ir[((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
-rid['sepal_width']
-```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/c554ef7e-012c-40f6-8b82-dbe4ae9a20b3)
-
-```py
-delid=ir[~((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
-delid
-```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/0a32cc24-1970-41a2-acf7-cb58a6955c01)
-
-```py
-sns.boxplot(x='sepal_width',data=delid)
-```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/19664bc6-f558-48f3-b449-fa6652c4e7ed)
-
-<hr><hr>
-
-
-```py
-import matplotlib.pyplot as plt
 import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df
+print(df.loc[0:3])
+```
+![image](https://github.com/user-attachments/assets/284a578e-ea82-400c-80ba-3c5c26e19052)
+```
+import pandas as pd
+df=pd.read_csv("SAMPLEIDS.csv")
+df.dropna(inplace=True)
+sns.heatmap(df.isnull(),yticklabels=False,annot=True)
+```
+![image](https://github.com/user-attachments/assets/2e79a6db-53aa-487f-97f3-7eafd4696138)
+```
+import pandas as pd
+import seaborn as sns
 import numpy as np
-import scipy.stats as stats
+age={1,3,28,27,25,92,30,39,40,50,26,24,29,94}
+af=pd.DataFrame(age)
+print(af)
 ```
-```py
-dataset=pd.read_csv("heights.csv")
-dataset
+![image](https://github.com/user-attachments/assets/3bf79f96-c203-410a-8d6e-09e27c428620)
+
 ```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/080b6095-73da-4bee-a763-08c7a0b81a07)
-
-```py
-df = pd.read_csv("heights.csv")
-q1 = df['height'].quantile(0.25)
-q2 = df['height'].quantile(0.5)
-q3 = df['height'].quantile(0.75)
+sns.boxplot(data=af)#outlier are 1,3 below the blue box and 92,94 are outlier above the blue box
+#outlier - to high or to low from the given range 
 ```
-
-```py
-iqr = q3-q1
-iqr
+![image](https://github.com/user-attachments/assets/92b58984-53e1-4f89-9c18-a67a864a9bc1)
 ```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/ffb0b515-5964-4405-9e0b-6d2c986c3308)
-
-
-```py
-low = q1 - 1.5*iqr
-low
+sns.boxenplot(data=af)#to understand whether the outlier exist or not
 ```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/b68f4b97-1246-4747-9aff-06e058c94f44)
-
-```py
-high = q3 + 1.5*iqr
-high
+![image](https://github.com/user-attachments/assets/5e6162c4-a434-42c9-b3c9-e1ca89ea1149)
 ```
-
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/da8aa517-c1de-4e43-91d6-ec677f8beaa5)
-
-
-```py
-df1 = df[((df['height'] >=low)& (df['height'] <=high))]
-df1
+sns.scatterplot(data=af)
 ```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/5444510b-6eb1-4fdd-a65f-02c85bd685d4)
-
-
-```py
-z = np.abs(stats.zscore(df['height']))
-z
+![image](https://github.com/user-attachments/assets/17c9c997-4cdf-4960-9a68-95f2d269adf6)
 ```
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/02efcb16-a37a-4313-8111-7396dbd21f2e)
-
-```py
-df1 = df[z<3]
-df1
+#iqr-inter quantile reduction
+q1=af.quantile(0.25)
+q2=af.quantile(0.5)
+q3=af.quantile(0.75)
+iqr=q3-q1
+print(iqr)
 ```
+![image](https://github.com/user-attachments/assets/a38d1831-eee9-489d-a60a-4abd33fefa57)
+```
+#either this or previous one
+q1=np.percentile(af,25)
+q3=np.percentile(af,75)
+iqr=q3-q1
+print(iqr)
+```
+![image](https://github.com/user-attachments/assets/778fd511-73c6-4e2a-b9ec-e138b328b3a9)
+```
+lower_bound=q1-1.5*iqr
+print(lower_bound)
+```
+![image](https://github.com/user-attachments/assets/15f8e3e4-b9a2-4c7e-98c4-62b86ad9ff65)
+```
+upper_bound=q3+1.5*iqr
+print(upper_bound)
+```
+![image](https://github.com/user-attachments/assets/bddef5a7-3f49-4c2e-b609-9e13a8832125)
+```
+outliers=[x for x in age if x <lower_bound or x > upper_bound]
+print(outliers)
+```
+![image](https://github.com/user-attachments/assets/b1f84937-60ae-4454-9eb5-4b0969569a34)
+```
+print(iqr)
+print("Q1:",q1)
+print("Q3:",q3)
+print("lower_bound:",lower_bound)
+print("upper_bound",upper_bound)
+print("outliers",outliers)
+```
+![image](https://github.com/user-attachments/assets/869d00e9-dff8-4eb0-8efa-c8e3a599f454)
+```
+af=af[(af>=lower_bound)&(af>=lower_bound)]
+print(af)
+```
+![image](https://github.com/user-attachments/assets/31d670c3-5c17-4acf-8657-e6f5c6e9f096)
 
-![image](https://github.com/PSriVarshan/exno1/assets/114944059/fbfd480f-960d-4d51-8695-71718cc8a342)
-
-<hr>
-
-## Result
-Hence the data was cleaned , outliers were detected and removed.
+# Result:
+Thus we have cleaned the data and removed the outliers by detection using IQR and Z-score method.
